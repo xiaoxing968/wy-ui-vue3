@@ -28,6 +28,15 @@ export default {
   background: lightgreen;
   & .actions{
     padding: 8px 0;
+    a {
+      margin:0 8px;
+      background: #fff;
+      display: inline-block;
+      height: 28px;
+      line-height: 28px;
+      border-radius: 28px/2;
+      padding: 0 8px;
+    }
   }
 }
 </style>
