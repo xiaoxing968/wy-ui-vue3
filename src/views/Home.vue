@@ -1,0 +1,33 @@
+<template>
+  <div>
+    <TopNav />
+    <div class="banner">
+      <h1>wy-ui</h1>
+      <h2>基于Vue3的UI框架</h2>
+      <p class="actions">
+        <a href="https://github.com">GitHub</a>
+        <router-link to="/doc">开始</router-link>
+      </p>
+    </div>
+  </div>
+</template>
+<script lang="ts">
+import TopNav from "../components/TapNav.vue";
+export default {
+  components: { TopNav },
+};
+</script>
+
+<style lang="less" scoped>
+.banner {
+  padding: 100px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: lightgreen;
+  & .actions{
+    padding: 8px 0;
+  }
+}
+</style>
