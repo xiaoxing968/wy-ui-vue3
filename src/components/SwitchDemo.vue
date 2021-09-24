@@ -1,16 +1,18 @@
 <template>
- <div>switch</div>
+  <!--  等同于之前的.sync-->
+  <Switch v-model:value="flag"/>
 </template>
 
 <script>
+import Switch from "../lib/switch.vue"
+import { ref } from "vue"
+
 export default {
-name: "SwitchDemo",
-data(){
- return{}
-},
-created(){},
-methods:{},
-components:{}
+  setup() {
+    const flag = ref(false)
+    return { flag }
+  },
+  components: {Switch}
 }
 
 </script>
