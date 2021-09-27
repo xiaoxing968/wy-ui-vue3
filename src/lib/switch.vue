@@ -12,6 +12,8 @@ export default {
     value: Boolean
   },
   setup(props,context) { // 第一个参数为props接收的所有属性 第二个参数为context 叫啥都无所谓，里面有emit 同之前的this.$emit
+
+
     const toggle = () =>{
       context.emit("update:value",!props.value)
     }
