@@ -1,20 +1,21 @@
 <template>
   <template v-if="visible">
     <Teleport to="body">
-      <div class="wy-dialog-overlay"></div>
+      <div class="wy-dialog-overlay" @click="overlayClose"></div>
       <div class="wy-dialog-wrapper">
         <div class="wy-dialog">
           <header>
-            <span v-if="title">{{title}}</span>
+            <span v-if="title">{{ title }}</span>
             <slot v-else name="title"/>
             <span @click="close" class="wy-dialog-close"></span>
           </header>
+
           <main>
-            <slot name="content"/>
+            <slot/>
           </main>
+
           <footer>
-            <wy-button level="main">OK</wy-button>
-            <wy-button>Cancel</wy-button>
+            <slot name="footer"></slot>
           </footer>
         </div>
       </div>
@@ -24,8 +25,8 @@
 
 <script lang="ts">
 import wyButton from "../lib/button.vue"
+
 export default {
-  name: "dialog",
   props: {
     visible: {
       type: Boolean,
@@ -34,13 +35,36 @@ export default {
     title: {
       type: String,
     },
-
+    cancel: {
+      type: Function, // 接收一个关闭弹窗的回调事件
+    },
+    open: {
+      type: Function, // 打开弹窗的回调事件
+    },
+    closeInOverlay: {
+      type: Boolean, // 是否支持点击遮罩层来关闭dialog
+      default: true
+    },
   },
-  setup(props,{emit}) {
-    const close = () =>{
-      emit("update:visible",false)
+  setup(props: any, context: any) {
+    const close = () => {
+      context.emit("update:visible", false)
+      // props.cancel?.()
     }
-    return {close}
+    const overlayClose = () => {
+      if (props.closeInOverlay)
+        close()
+    }
+    return {close, overlayClose}
+  },
+  mounted() {
+    // console.log(this.$slots.default())
+  },
+  watch: {
+    visible(newValue: Boolean) {
+      !newValue && this.cancel?.()
+      newValue && this.open?.()
+    }
   },
   components: {wyButton}
 }
