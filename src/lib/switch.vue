@@ -45,7 +45,7 @@ button {
   }
 
   &.checked {
-    background: #1890ff;
+    background: #67C23A;
 
     > span {
       left: calc(100% - @height2 - 2px);
