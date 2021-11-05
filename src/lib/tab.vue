@@ -1,6 +1,5 @@
 <template>
   <slot/>
-  <button @click="x">bus</button>
 </template>
 
 <script>
@@ -10,12 +9,11 @@ export default {
     name: {
       type: String,
     },
+    title: {
+      type: String,
+    },
   },
-  setup() {
-    const x = () =>{
-    }
-    return{x}
-  },
+  setup() {},
   components: {}
 }
 
