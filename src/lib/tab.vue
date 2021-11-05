@@ -13,7 +13,8 @@ export default {
       type: String,
     },
   },
-  setup() {},
+  setup() {
+  },
   components: {}
 }
 
