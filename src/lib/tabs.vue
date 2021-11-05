@@ -18,13 +18,14 @@
         <component :is="selected"></component>
       </div>
     </div>
+    {{selected}}
     <br> <p>子组件tabs里的：{{modelValue}}</p>
   </div>
 </template>
 
 <script lang="ts">
 import tab from "./tab.vue"
-import {ref, onMounted, watchEffect} from "vue"
+import {ref, onMounted, watchEffect ,watch ,shallowRef ,computed} from "vue"
 
 export default {
   name: "tabs",
@@ -38,27 +39,32 @@ export default {
     const container = ref<HTMLDivElement>(null) // 最外层框
     const indicator = ref<HTMLDivElement>(null) // 下边线
 
-    const modelValue = ref(props.modelValue) // 需要选中的tab的name
+    // let selected = shallowRef(null)
+    // const modelValue = ref(props.modelValue) // 需要选中的tab的name
 
     const defaults = context.slots.default() // 所有的tab
 
     // o.type 是全等于引入的tab组件的
-    const selected = defaults.find(o => o.props.name && o.props.name === modelValue)
     const titles = defaults.map(o => {
           if (o.type !== tab) throw new Error("tabs的子组件必须是tab")
           return {name: o.props.name, title: o.props.title}
         }
     )
-
-
+    // let  selected = shallowRef(defaults.find(o => o.props.name && o.props.name === props.modelValue))
+    // const current = computed(() => {
+    //   return defaults.find(tag => tag.props.title === props.selected)
+    // })
+    // console.log(selected)
+    // watch(()=> props.modelValue,(newval)=>{
+    //   selected.value = shallowRef(defaults.find(o => o.props.name && o.props.name === newval))
+    //   console.log(selected)
+    // })
     const select = (item:object) =>{
       context.emit('update:modelValue', item.name)
-      console.log(item)
     }
 
     onMounted(() => {
       watchEffect(() => {
-        console.log(currentItem)
         const {
           width
         } = currentItem.value.getBoundingClientRect()
@@ -71,10 +77,18 @@ export default {
         } = currentItem.value.getBoundingClientRect()
         const left = left2 - left1
         indicator.value.style.left = left + 'px'
-        console.log(width)
+
+
+      },{
+        flush:'post'
       })
     })
-    return {selected, titles, modelValue, currentItem, container,indicator,select}
+    const selected = computed(() => {
+      console.log(defaults.find(o => o.props.name && o.props.name === props.modelValue))
+      return defaults.find(o => o.props.name && o.props.name === props.modelValue)
+    })
+
+    return {selected, titles, currentItem, container,indicator,select}
   },
   components: {}
 }
