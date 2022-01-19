@@ -1,6 +1,8 @@
 <template>
   <div class="topNav">
-    <div class="logo">WY-UI</div>
+    <div class="logo">
+      wy-ui
+      <i class="iconfont icon-cat1"></i></div>
     <ul class="menu">
       <li>教程</li>
       <li>菜单</li>
@@ -22,7 +24,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .topNav {
-  background: pink;
+  background: #3698db;
   display: flex;
   padding: 16px;
   position: fixed;
@@ -35,6 +37,7 @@ export default {
   & .logo {
     max-width: 6em;
     margin-right: auto;
+    color: white;
   }
   & .menu {
     display: flex;

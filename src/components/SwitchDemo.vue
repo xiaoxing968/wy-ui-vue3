@@ -1,5 +1,4 @@
 <template>
-  <!--  等同于之前的.sync-->
   <wy-switch v-model:value="flag"/>
 </template>
 

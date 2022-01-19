@@ -1,0 +1,63 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 2281475 */
+  src: url('//at.alicdn.com/t/font_2281475_33cflkqvvwt.woff2?t=1642609249898') format('woff2'),
+  url('//at.alicdn.com/t/font_2281475_33cflkqvvwt.woff?t=1642609249898') format('woff'),
+  url('//at.alicdn.com/t/font_2281475_33cflkqvvwt.ttf?t=1642609249898') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-cat1:before {
+  content: "\e654";
+}
+
+.icon-up:before {
+  content: "\e658";
+}
+
+.icon-left:before {
+  content: "\e659";
+}
+
+.icon-down:before {
+  content: "\e65a";
+}
+
+.icon-right:before {
+  content: "\e65b";
+}
+
+.icon-zengjia:before {
+  content: "\e8c0";
+}
+
+.icon-error:before {
+  content: "\e8c5";
+}
+
+.icon-info:before {
+  content: "\e8c6";
+}
+
+.icon-loading:before {
+  content: "\e60e";
+}
+
+.icon-download:before {
+  content: "\e695";
+}
+
+.icon-thumbs-up:before {
+  content: "\e65c";
+}
+
+.icon-setting:before {
+  content: "\e60a";
+}
+

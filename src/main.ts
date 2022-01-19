@@ -2,6 +2,7 @@ import {createApp} from 'vue'
 import App from './App.vue'
 import './lib/wy.less'
 import "./index.less";
+import "./iconfont.css";
 import {router} from "./router"
 
 const app = createApp(App)

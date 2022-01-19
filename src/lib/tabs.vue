@@ -2,7 +2,6 @@
   <div class="wy-tabs">
     <div class="wy-tabs-nav" ref="container">
 
-
       <div class="wy-tabs-nav-item"
            v-for="item in titles"
            :ref=" el =>{
@@ -17,19 +16,14 @@
 
     </div>
     <div class="wy-tabs-content">
-      <component :is="selected"></component>
+      <component :is="selected" :key="selected.props.title"></component>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-        {{selected}}
   </div>
 </template>
 
 <script lang="ts">
 import tab from "./tab.vue"
-import {ref, onMounted, watchEffect ,computed} from "vue"
+import {ref, onMounted, watchEffect, computed} from "vue"
 
 export default {
   name: "tabs",
@@ -56,7 +50,7 @@ export default {
     )
 
 
-    const select = (item:object) =>{
+    const select = (item: object) => {
       context.emit('update:modelValue', item.name)
       console.log(item)
     }
@@ -79,10 +73,10 @@ export default {
         console.log(width)
       })
     })
-    const selected = computed(()=>{
+    const selected = computed(() => {
       return defaults.find(o => o.props.name && o.props.name === props.modelValue)
     })
-    return {selected, titles, currentItem, container,indicator,select}
+    return {selected, titles, currentItem, container, indicator, select}
   },
   components: {}
 }
@@ -98,17 +92,21 @@ export default {
     color: @color;
     border-bottom: 1px solid @border-color;
     position: relative;
+
     .wy-tabs-nav-item {
       padding: 8px 0;
       margin: 0 16px;
       cursor: pointer;
+
       &:first-child {
         margin-left: 0;
       }
+
       &.selected {
         color: @theme;
       }
     }
+
     &-indicator {
       position: absolute;
       height: 3px;
