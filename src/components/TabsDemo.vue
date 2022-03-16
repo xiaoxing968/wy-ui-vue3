@@ -5,10 +5,6 @@
       <wy-tab title="导航2" name="导航2">tab2</wy-tab>
       <wy-tab title="导航3" name="导航3">tab2</wy-tab>
       <wy-tab title="导航4" name="导航4">tab2</wy-tab>
-      <wy-tab title="导航5" name="导航5">tab2</wy-tab>
-      <wy-tab title="导航6" name="导航6">tab2</wy-tab>
-      <wy-tab title="导航7" name="导航7">tab2</wy-tab>
-      <wy-tab title="导航8" name="导航8">tab2</wy-tab>
     </wy-tabs>
   </div>
 </template>
