@@ -1,33 +1,43 @@
 <template>
-  <div>
-    <h1>Switch 组件示例 </h1>
-    <div class="demo">
-      <h2>常规用法</h2>
-      <div class="demo-component">
-        <wy-switch v-model:value="flag"/>
-      </div>
-      <div class="demo-actions">
-        <Button>查看代码</Button>
-      </div>
-      <div class="demo-code">
-        <pre>&lt;Switch v-model:value="bool" /&gt;</pre>
-      </div>
-    </div>
-  </div>
+  <demo-page :option="switchOption" :attr-content="attrContent">
+    <template #primary>
+      <wy-switch v-model:value="bool"></wy-switch>
+    </template>
+    <template #disabled>
+      <wy-switch v-model:value="checked" disabled></wy-switch>
+    </template>
+    <template #loading>
+      <wy-switch v-model:value="checked2" loading></wy-switch>
+    </template>
+  </demo-page>
 </template>
 
 <script lang="ts">
+
 import wySwitch from "../lib/switch.vue"
-import {
-  ref
-} from 'vue'
+import SWITCH_OPTION from './demoOptions/switch'
+import attrSwitch  from '../markdown/attr-switch.md'
+import DemoPage from "./common/DemoPage.vue"
+import { ref } from 'vue'
+
 export default {
   components: {
-    wySwitch,
+    wySwitch,DemoPage
   },
   setup() {
-    const flag = ref(false)
-    return { flag }
+    const switchOption = ref<object>(SWITCH_OPTION)
+    const attrContent = ref<string>('')
+    attrContent.value = attrSwitch
+    const bool = ref<boolean>(false)
+    const checked = ref<boolean>(false)
+    const checked2 = ref<boolean>(false)
+    return {
+      bool,
+      checked,
+      switchOption,
+      attrContent,
+      checked2
+    }
   }
 }
 </script>
@@ -37,22 +47,27 @@ export default {
 .demo {
   border: 1px solid @border-color;
   margin: 16px 0 32px;
-  >h2 {
+
+  > h2 {
     font-size: 20px;
     padding: 8px 16px;
     border-bottom: 1px solid @border-color;
   }
+
   &-component {
     padding: 16px;
   }
+
   &-actions {
     padding: 8px 16px;
     border-top: 1px dashed @border-color;
   }
+
   &-code {
     padding: 8px 16px;
     border-top: 1px dashed @border-color;
-    >pre {
+
+    > pre {
       line-height: 1.1;
       font-family: Consolas, 'Courier New', Courier, monospace;
       margin: 0;

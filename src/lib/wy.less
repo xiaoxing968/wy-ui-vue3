@@ -1,3 +1,59 @@
+@main-theme-color: #87dfd6;
+@main-hover-color: lighten(@main-theme-color, 8%);
+@main-active-color: darken(@main-theme-color, 10%);
+@main-color-light: lighten(@main-theme-color, 25%);
+@black: #000;
+@white: #fff;
+@gray: #f7f8fa;
+@gray-1: #f7f8fa;
+@gray-2: #f2f3f5;
+@gray-3: #ebedf0;
+@gray-4: #dcdee0;
+@gray-5: #c8c9cc;
+@gray-6: #969799;
+@gray-7: #646566;
+@gray-8: #323233;
+@active-color: @gray-2;
+@color: #333;
+@text-color: @gray-8;
+@error: #FC7365;
+@error-hover: lighten(@error, 8%);
+@error-active: darken(@error, 8%);
+@success: #4ecca3;
+@success-hover: lighten(@success, 8%);
+@success-active: darken(@success, 8%);
+@warning: #FCC98B;
+@warning-hover: lighten(@warning, 8%);
+@warning-active: darken(@warning, 8%);
+@info: #C5D4EA;
+@info-hover: lighten(@info, 5%);
+@info-active: darken(@info, 8%);
+@disabled: @gray-3;
+@item-height-regular: 32px;
+
+// Font
+@font-size-xs: 10px;
+@font-size-xs11: 11px;
+@font-size-sm: 12px;
+@font-size-sm13: 13px;
+@font-size-md: 14px;
+@font-size-md15: 15px;
+@font-size-lg: 16px;
+@font-size-lg17: 17px;
+@font-weight-bold: 500;
+@line-height-xs: 14px;
+@line-height-sm: 18px;
+@line-height-md: 20px;
+@line-height-lg: 22px;
+
+//border
+@main-border: 1px solid @gray-2;
+@light-border: 1px solid @gray-1;
+@border-color-main: @gray-2;
+@border-color-light: @gray-1;
+
+// overlay
+@overlay-background: fade_out(black, 0.6);
 [class^="wy-"], [class*=" wy-"] {
   margin: 0;
   padding: 0;

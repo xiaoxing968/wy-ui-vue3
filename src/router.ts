@@ -7,6 +7,7 @@ import DialogDemo from "./components/DialogDemo.vue";
 import TabsDemo from "./components/TabsDemo.vue";
 import DocDemo from "./components/DocDemo.vue";
 import Install from "./components/Install.vue";
+import Intro from "./components/Intro.vue";
 
 const history = createWebHashHistory();
 export const router = createRouter({
@@ -18,6 +19,7 @@ export const router = createRouter({
             component: Doc,
             children: [
                 { path: "", component: DocDemo },
+                { path: "intro", component: Intro },
                 { path: "install", component: Install },
                 { path: "switch", component: SwitchDemo },
                 { path: "button", component: ButtonDemo },

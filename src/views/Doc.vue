@@ -6,6 +6,7 @@
         <h2>介绍</h2>
         <ol>
           <li>
+            <router-link to="/doc/intro">介绍</router-link>
             <router-link to="/doc/install">安装</router-link>
           </li>
         </ol>

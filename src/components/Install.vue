@@ -4,6 +4,7 @@
 
 <script>
 import md from '../markdown/install.md'
+
 export default {
   name: "Install",
   data(){
