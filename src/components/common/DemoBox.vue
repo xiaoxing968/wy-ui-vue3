@@ -22,7 +22,7 @@
            @mouseenter="controlHover = true"
            @mouseleave="controlHover = false"
            @click="toggleCode">
-        <x-icon :name="`${codeShow ? 'up' : 'down'}-fill`"></x-icon>
+        <wy-icon :name="`${codeShow ? 'up' : 'down'}-fill`"></wy-icon>
         <span>{{ codeShow ? '隐藏代码' : '显示代码' }}</span>
       </div>
     </div>
@@ -30,14 +30,14 @@
 </template>
 
 <script lang="ts">
-import XIcon from '../../lib/Icon.vue'
+import WyIcon from '../../lib/Icon.vue'
 import PreCode from './PreCode.vue'
 import { ref,onMounted } from 'vue'
 
 export default {
   name:'wy-ui-demo-box',
   components: {
-    XIcon,
+    WyIcon,
     PreCode
   },
   props: {
