@@ -12,7 +12,7 @@ export default {
         `,
             code: `
     <template>
-      <x-switch v-model:value="checked"></x-switch>
+      <wy-switch v-model:value="checked"></wy-switch>
     </template>
 
     <script lang="ts">
@@ -38,12 +38,12 @@ export default {
             description: `使用 <code>disabled</code> 属性来禁用开关，禁用状态下开关不可点击`,
             code: `
     <template>
-      <x-switch v-model:value="checked" disabled></x-switch>
+      <wy-switch v-model:value="checked" disabled></wy-switch>
     </template>
 
     <script lang="ts">
     
-    import { XSwitch } from 'xing-ui-v3'
+    import { XSwitch } from 'wy-ui-v3'
     import {ref} from 'vue'
     
     export default {
@@ -63,12 +63,12 @@ export default {
             description: `使用 <code>loading</code> 设置开关为加载状态，加载状态下开关不可点击`,
             code: `
     <template>
-      <x-switch v-model:value="checked" loading></x-switch>
+      <wy-switch v-model:value="checked" loading></wy-switch>
     </template>
 
     <script lang="ts">
     
-    import { XSwitch } from 'xing-ui-v3'
+    import { XSwitch } from 'wy-ui-v3'
     import {ref} from 'vue'
     
     export default {

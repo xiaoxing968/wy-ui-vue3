@@ -1,28 +1,46 @@
 <template>
-  <div style="width: 200px">
-    <wy-tabs v-model="a">
-      <wy-tab title="导航1" name="导航1">tab1</wy-tab>
-      <wy-tab title="导航2" name="导航2">tab2</wy-tab>
-      <wy-tab title="导航3" name="导航3">tab2</wy-tab>
-      <wy-tab title="导航4" name="导航4">tab2</wy-tab>
-    </wy-tabs>
-  </div>
+  <demo-page :option="option" :attr-content="attrContent">
+    <template #primary>
+      <wy-tabs v-model="selectTab">
+        <wy-tab title="导航1" name="t1">tab1</wy-tab>
+        <wy-tab title="导航2" name="t2">tab2</wy-tab>
+        <wy-tab title="导航3" name="t3">tab3</wy-tab>
+        <wy-tab title="导航4" name="t4">tab4</wy-tab>
+      </wy-tabs>
+    </template>
+  </demo-page>
 </template>
 
-<script>
-import {ref} from "vue"
-import wyTabs from "../lib/tabs.vue"
-import wyTab from "../lib/tab.vue"
+<script lang="ts">
+import WyTabs from '../lib/tabs.vue'
+import WyTab from '../lib/tab.vue'
+import DemoPage from './common/DemoPage.vue'
+import attrContentMd from '../markdown/attr-tabs.md'
+import TABS_OPTION from './demoOptions/tabs'
+import { ref } from 'vue'
 
 export default {
-  name: "SwitchDemo",
-  setup() {
-  const a = ref("导航1")
-    return{a}
+  name: 'tabs-demo',
+  components: {
+    DemoPage,
+    WyTabs,
+    WyTab
   },
-  components: {wyTabs, wyTab}
-}
+  setup() {
+    const selectTab = ref<string>('t1')
 
-</script>z
-<style scoped>
+    const option = ref<object> (TABS_OPTION)
+    const attrContent = ref<string>('')
+    attrContent.value = attrContentMd
+    return {
+      selectTab,
+      option,
+      attrContent
+    }
+  }
+}
+</script>
+
+<style scoped lang="scss">
+
 </style>

@@ -85,7 +85,7 @@ export default {
 <style lang="less">
 @theme: #67C23A;
 @color: #333;
-@border-color: #d9d9d9;
+@border-color: #f2f3f5;
 .wy-tabs {
   &-nav {
     display: flex;

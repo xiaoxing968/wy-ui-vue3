@@ -1,41 +1,98 @@
 <template>
-  <div>
-    {{ visible }}
-    <wy-dialog v-model:visible="visible" title="111" :cancel="fn" :open="fn">
-      <!--     标题可以通过插槽传 也可以通过title属性-->
-      <template v-slot:title>title</template>
-      <span>content</span>
-      <template v-slot:footer>
-        <wy-button level="main">OK</wy-button>
-        <wy-button @click="visible = false">Cancel</wy-button>
-      </template>
-    </wy-dialog>
-    <wy-button @click="visible = true">click</wy-button>
-  </div>
+  <demo-page :option="option" :attr-content="attrContent">
+    <template #primary>
+      <wy-button @click="toggle('eg1')">打开对话框</wy-button>
+      <wy-dialog v-model:visible="visible.eg1" title="标题" content="content"></wy-dialog>
+    </template>
+    <template #slots>
+      <wy-button @click="toggle('eg2')">自定义对话框</wy-button>
+      <wy-dialog v-model:visible="visible.eg2">
+        <template v-slot:title>
+          <span>title</span>
+        </template>
+        <template v-slot:footer>
+          <span>footer</span>
+        </template>
+        <p>通过slot传入内容~</p>
+        <p>通过slot传入内容~</p>
+        <p>通过slot传入内容~</p>
+      </wy-dialog>
+    </template>
+    <template #event>
+      <wy-button @click="toggle('eg3')">异步关闭</wy-button>
+      <wy-dialog v-model:visible="visible.eg3"
+                title="删除" content="确认删除吗"
+                :confirm="confirm"
+                :on-cancel="cancel">
+      </wy-dialog>
+    </template>
+    <template #function>
+      <wy-button @click="showDialog">函数调用</wy-button>
+    </template>
+  </demo-page>
 </template>
 
 <script lang="ts">
-
-import wyDialog from "../lib/dialog.vue";
-import wyButton from "../lib/button.vue";
-import {ref} from "vue"
+import WyDialog from '../lib/dialog.vue'
+import WyButton from '../lib/button.vue'
+import DemoPage from './common/DemoPage.vue'
+import attrContentMd from '../markdown/attr-dialog.md'
+import DIALOG_OPTION from './demoOptions/dialog'
+import {openDialog} from '../lib/plugin/openDialog'
+import {ref} from 'vue'
 
 export default {
-  name: "DialogDemo",
+  name: 'dialog-demo',
+  components: {
+    DemoPage,
+    WyDialog,
+    WyButton
+  },
   setup() {
-    const visible = ref(false)
-    const fn = (type: any) => {
-
-      console.log(visible.value)
+    const visible = ref<object>({
+      eg1: false,
+      eg2: false
+    })
+    const visible1 = ref<boolean>(false)
+    const toggle = (eg) => {
+      visible.value[eg] = !visible.value[eg]
     }
-    return {visible, fn}
-  },
-  created() {
-  },
-  methods: {},
-  components: {wyDialog, wyButton}
-}
+    const confirm = () => {
+      alert('您暂时不能删除')
+      return false
+    }
+    const cancel = () => {
+      console.log('取消')
+    }
+    const showDialog = () => {
+      openDialog({
+        title: '标题',
+        content: '嗨',
+        confirm: () => {
+          console.log('confirm')
+          return true
+        },
+        cancel: () => {
+          console.log('cancel')
+        },
+        closeOnClickOverlay: false
+      })
+    }
 
+    const option = ref<object>(DIALOG_OPTION)
+    const attrContent = ref<string>('')
+    attrContent.value = attrContentMd
+    return {
+      visible1, visible,
+      showDialog,
+      toggle, confirm, cancel,
+      option,
+      attrContent
+    }
+  }
+}
 </script>
-<style scoped>
+
+<style scoped lang="scss">
+
 </style>

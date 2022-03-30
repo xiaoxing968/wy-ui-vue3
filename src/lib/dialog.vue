@@ -11,11 +11,16 @@
           </header>
 
           <main>
+            <div v-if="content">{{ content }}</div>
             <slot/>
           </main>
 
           <footer>
-            <slot name="footer"></slot>
+            <slot name="footer" v-if="$slots.footer"></slot>
+            <template v-else>
+              <wy-button size="small" @click="close">取消</wy-button>
+              <wy-button size="small" level="main" @click="onConfirm">确定</wy-button>
+            </template>
           </footer>
         </div>
       </div>
@@ -35,8 +40,14 @@ export default {
     title: {
       type: String,
     },
+    content: {
+      type: String,
+    },
     cancel: {
       type: Function, // 接收一个关闭弹窗的回调事件
+    },
+    confirm: {
+      type: Function, // 点击确定的回调事件
     },
     open: {
       type: Function, // 打开弹窗的回调事件
@@ -49,13 +60,18 @@ export default {
   setup(props: any, context: any) {
     const close = () => {
       context.emit("update:visible", false)
-      // props.cancel?.()
+      props.cancel?.()
     }
     const overlayClose = () => {
       if (props.closeInOverlay)
         close()
     }
-    return {close, overlayClose}
+    const onConfirm = () => {
+      if (props.confirm?.() !== false){
+        context.emit("update:visible", false)
+      }
+    }
+    return {close, overlayClose, onConfirm}
   },
   mounted() {
     // console.log(this.$slots.default())
@@ -112,7 +128,7 @@ export default {
   }
 
   > footer {
-    border-top: 1px solid @border-color;
+    //border-top: 1px solid @border-color;
     padding: 12px 16px;
     text-align: right;
   }

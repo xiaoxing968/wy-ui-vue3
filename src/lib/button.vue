@@ -1,5 +1,6 @@
 <template>
   <button class="wy-button" :class="classes" :disabled="disabled">
+    <span v-if="loading" class="wy-loadingIndicator"></span>
     <slot/>
   </button>
 </template>
@@ -29,10 +30,14 @@ export default {
       type: String,
       default: "normal",
       validator(val) {
-        return ['normal', 'main', 'danger'].includes(val)
+        return ['normal', 'main', 'danger','warning'].includes(val)
       }
     },
     disabled: {
+      type: Boolean,
+      default: false,
+    },
+    loading: {
       type: Boolean,
       default: false,
     }
@@ -56,6 +61,7 @@ export default {
 @border-color: #d9d9d9;
 @color: #333;
 @theme: #67C23A;
+@waning: #FCC98B;
 @radius: 4px;
 @red: red;
 @grey: grey;
@@ -121,6 +127,10 @@ export default {
     padding: 0 12px;
   }
 
+  &.wy-size-small {
+    font-size: 12px;
+    padding: 0 8px;
+  }
   &.wy-size-mini {
     font-size: 12px;
     height: 24px;
@@ -137,6 +147,18 @@ export default {
       &:focus {
         background: darken(@theme, 10%);
         border-color: darken(@theme, 10%);
+      }
+    }
+
+    &.wy-level-warning {
+      background: @waning;
+      color: white;
+      border-color: @waning;
+
+      &:hover,
+      &:focus {
+        background: darken(@waning, 10%);
+        border-color: darken(@waning, 10%);
       }
     }
 
